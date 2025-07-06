@@ -26,4 +26,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('oglasi/{id}',[OglasController::class,'show']);
 
       Route::post('oglasi',[OglasController::class,'store']);
+         Route::delete('oglasi/{id}',[OglasController::class,'destroy']);
 });

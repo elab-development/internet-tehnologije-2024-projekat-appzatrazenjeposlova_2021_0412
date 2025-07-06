@@ -151,4 +151,48 @@ class OglasController extends Controller
 }
 
 
+
+    public function destroy($id)
+    {
+        try {
+          
+
+            if(Auth::user()->type=='company'  || Auth::user()->type=='admin'){
+               
+
+                $oglas = Oglas::findOrFail($id);
+                if(Auth::user()->type=='company' && $oglas->user->id!=Auth::user()->id){
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Nije autorizovan pristup, morate biti kompanija vlasnik da bi ste obrisali oglas!!!',
+                    ], 401);
+                }
+
+
+                $oglas->delete();
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Oglas uspešno obrisan.',
+                ], 200); 
+            }
+            else{
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Nije autorizovan pristup, morate biti kompanija vlasnik ili admin da bi ste obrisali oglas!!!',
+                ], 401);
+               
+            }
+
+           
+        }  catch (\Exception $e) {
+        
+            return response()->json([
+                'success' => false,
+                'message' => 'Došlo je do greške prilikom brisanja oglasa.',
+                'error' => $e->getMessage(),
+            ], 500); 
+        }
+    }
+
+
 }
