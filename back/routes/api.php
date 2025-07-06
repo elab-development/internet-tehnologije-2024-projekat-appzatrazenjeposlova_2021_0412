@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KompanijaController;
 use App\Http\Controllers\KategorijaKompanijeController;
+use App\Http\Controllers\OglasController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -20,4 +21,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('kompanije/',[KompanijaController::class,'index']);
 
     Route::put('kompanije/{id}',[KompanijaController::class,'update']);
+
+      Route::get('oglasi/',[OglasController::class,'index']);
+    Route::get('oglasi/{id}',[OglasController::class,'show']);
 });
