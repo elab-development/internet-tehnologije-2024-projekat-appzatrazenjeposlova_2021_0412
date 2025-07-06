@@ -10,6 +10,9 @@ import JobAdPage from './Components/JobAdPage';
 import JobCategories from './Components/JobCategories';
 import Students from './Components/Students';
 import CompanyProfile from './Components/CompanyProfile';
+import MyAds from './Components/MyAds';
+import AddAd from './Components/AddAd';
+import MyApplications from './Components/MyApplications';
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
             <Route path="/categories" element={<JobCategories />} />
             <Route path="/students" element={<Students />} />
             <Route path="/account" element={<CompanyProfile />} />
+             <Route path="/nasi-oglasi" element={<MyAds />} />
+            <Route path="/dodaj-oglas" element={<AddAd />} />
+            <Route path="/moje-prijave" element={<MyApplications />} />
            
          </Routes>
       </div>
