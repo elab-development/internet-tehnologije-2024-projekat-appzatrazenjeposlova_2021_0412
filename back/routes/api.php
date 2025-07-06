@@ -31,4 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::put('prijave/{id}',[PrijavaController::class,'update']);
     Route::post('prijave/',[PrijavaController::class,'store']);
+
+
+
+    Route::get('users/studenti',[UserController::class,'vratiStudente']);
 });

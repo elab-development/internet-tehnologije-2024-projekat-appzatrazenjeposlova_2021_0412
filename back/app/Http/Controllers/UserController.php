@@ -7,7 +7,7 @@
  use Illuminate\Http\Request;
  
  use App\Http\Resources\OglasResource;
-
+ use App\Http\Resources\UserResource;
  use Illuminate\Support\Facades\Auth;
  use Illuminate\Support\Facades\Log;
  
@@ -34,6 +34,21 @@
     }
    
 
+
+       public function vratiStudente()
+    {
+        try {
+           
+            $studenti = User::where('type', 'student')->paginate(5);
+            return UserResource::collection($studenti);
+    
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Došlo je do greške prilikom učitavanja korisnika.',
+                'error' => $e->getMessage()
+            ], 500); 
+        }
+    }
 
 
     
