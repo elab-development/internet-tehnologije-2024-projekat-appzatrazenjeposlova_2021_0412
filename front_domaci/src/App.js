@@ -6,6 +6,10 @@ import Register from './Components/Register';
 import AllAds from './Components/AllAds';
 import CompaniesPage from './Components/CompaniesPage';
 import CompanyDetail from './Components/CompanyDetail';
+import JobAdPage from './Components/JobAdPage';
+import JobCategories from './Components/JobCategories';
+import Students from './Components/Students';
+import CompanyProfile from './Components/CompanyProfile';
 
 function App() {
   return (
@@ -17,6 +21,10 @@ function App() {
               <Route path="/all-ads" element={<AllAds/>}/>
             <Route path="/kompanije" element={<CompaniesPage/>}/>
             <Route path="/kompanije/:id" element={<CompanyDetail />} />
+              <Route path="/all-ads/:id" element={<JobAdPage />} />
+            <Route path="/categories" element={<JobCategories />} />
+            <Route path="/students" element={<Students />} />
+            <Route path="/account" element={<CompanyProfile />} />
            
          </Routes>
       </div>
