@@ -22,13 +22,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::put('kompanije/{id}',[KompanijaController::class,'update']);
 
-      Route::get('oglasi/',[OglasController::class,'index']);
+    Route::get('oglasi/',[OglasController::class,'index']);
     Route::get('oglasi/{id}',[OglasController::class,'show']);
 
-      Route::post('oglasi',[OglasController::class,'store']);
-         Route::delete('oglasi/{id}',[OglasController::class,'destroy']);
+    Route::post('oglasi',[OglasController::class,'store']);
+    Route::delete('oglasi/{id}',[OglasController::class,'destroy']);
 
 
-
-          Route::post('prijave/',[PrijavaController::class,'store']);
+    Route::put('prijave/{id}',[PrijavaController::class,'update']);
+    Route::post('prijave/',[PrijavaController::class,'store']);
 });

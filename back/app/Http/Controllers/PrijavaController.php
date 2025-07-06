@@ -95,4 +95,46 @@ class PrijavaController extends Controller
         return Storage::url($pathFile);
     }
 
+
+     public function update(Request $request, $id)
+    {
+        try {
+         
+
+            $prijava = Prijava::findOrFail($id);
+            $user = Auth::user();
+            if($prijava->oglas->user->id!=$user->id){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Nije autorizovan pristup, morate biti vlasnik oglasa da bi ste izmenili status prijave!!!',
+                ], 401);
+            }
+
+            $validatedData = $request->validate([
+                'status' => 'required|string|in:na cekanju,odbijeno,prihvaceno',
+            ]);
+
+         
+
+           
+            $prijava->update([
+                'status' => $validatedData['status'],
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Status prijave uspešno ažuriran.',
+                'data' => new PrijavaResource($prijava),
+            ]);
+        
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Došlo je do greške prilikom ažuriranja prijave.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
 }
