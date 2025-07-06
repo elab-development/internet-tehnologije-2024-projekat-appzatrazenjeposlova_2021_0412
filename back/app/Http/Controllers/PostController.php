@@ -48,18 +48,25 @@ class PostController extends Controller
         try {
           
 
-
             $user = Auth::user();
+            $post = Post::findOrFail($id);
+            if($user->type==='admin'){
 
-            if($user->type!='alumni' && $user->type!='admin'){
-                return response()->json([
+                  $post->delete();
+                
+            }
+            elseif ($user->type==='alumni' && $post->user->id==$user->id ){
+                 $post->delete();
+            }
+            else{
+                      return response()->json([
                     'success' => false,
                     'message' => 'Niste autorizovani da obrisete post',
                 ], 401);
             }
 
-            $post = Post::findOrFail($id);
-            $post->delete();
+            
+          
 
     
             return response()->json([
