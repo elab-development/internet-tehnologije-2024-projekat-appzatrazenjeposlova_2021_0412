@@ -80,5 +80,32 @@
     }
     
 
+    
+    public function destroy($userId)
+    {
+        try {
+            
+            if(Auth::user()->type!='admin'){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Nije autorizovan pristup, morate biti administrator da bi ste obrisali studenta!!!',
+                ], 401);
+            }
+
+            $user = User::findOrFail($userId);
+            $user->delete();
+            return response()->json([
+                'message' => 'Korisnik uspešno obrisan.'
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Došlo je do greške prilikom brisanja korisnika.',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+     
+
      
  }
