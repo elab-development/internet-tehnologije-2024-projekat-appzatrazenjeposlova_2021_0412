@@ -35,4 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::get('users/studenti',[UserController::class,'vratiStudente']);
+
+
+    Route::get('users/moje-prijave',[UserController::class,'prijave']);
 });
