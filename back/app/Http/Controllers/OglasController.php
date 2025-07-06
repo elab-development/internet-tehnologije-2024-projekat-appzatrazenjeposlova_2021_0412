@@ -75,6 +75,80 @@ class OglasController extends Controller
     }
 
 
+    public function store(Request $request)
+    {
+        try {
+            if(Auth::user()->type!='company'){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Nije autorizovan pristup, morate biti kompanija da bi ste napravili oglas!!!',
+                ], 401);
+            }
+         
+            $validatedData = $request->validate([
+                'naslov' => 'required|string|max:255',
+                'opis' => 'required|string',
+                'potrebna_znanja' => 'required|string',
+                'kategorija_id' => 'nullable|integer|exists:kategorije_oglasa,id',
+                'lokacija' => 'required|string|max:255',
+                'banner' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+                'tip' => 'required|in:posao,praksa',
+            ]);
+
+
+            $kompanija = Kompanija::findOrFail(Auth::user()->id);
+           
+            $oglas = Oglas::create([
+                'user_id' => Auth::user()->id, 
+                'naslov' => $validatedData['naslov'],
+                'opis' => $validatedData['opis'],
+                'potrebna_znanja' => $validatedData['potrebna_znanja'],
+                'kategorija_id' => $validatedData['kategorija_id'] ?? null,
+                'lokacija' => $validatedData['lokacija'],
+                'banner' =>  $this->uploadBanner($request->file('banner'),$validatedData['naslov'],$kompanija->naziv),
+                'tip' => $validatedData['tip'],
+            ]);
+
+     
+            return response()->json([
+                'success' => true,
+                'message' => 'Oglas je uspešno kreiran.',
+                'data' => $oglas,
+            ], 201);
+        } catch (\Exception $e) {
+          
+            return response()->json([
+                'success' => false,
+                'message' => 'Došlo je do greške prilikom kreiranja oglasa.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+
+
+    private function uploadBanner($file, $naziv,$kompanija)
+{
+
+    $sanitizedNaziv = preg_replace('/[^a-zA-Z0-9_-]/', '_', $kompanija);
+    $path = 'app/' . $sanitizedNaziv;
+    if (!Storage::exists($path)) {
+        Storage::makeDirectory($path);
+    }
+
+    $sanitizedNaziv = preg_replace('/[^a-zA-Z0-9_-]/', '_', $naziv);
+    $extension = $file->getClientOriginalExtension(); 
+    $filename = $sanitizedNaziv . '.' . $extension;
+
+    $path = $path . '/'. $sanitizedNaziv;
+    if(!Storage::exists($path)){
+        Storage::makeDirectory($path);
+    }
+    $pathFile = $file->storeAs($path, $filename,'public');
+
+    return Storage::url($pathFile);
+}
 
 
 }

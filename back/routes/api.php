@@ -24,4 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
       Route::get('oglasi/',[OglasController::class,'index']);
     Route::get('oglasi/{id}',[OglasController::class,'show']);
+
+      Route::post('oglasi',[OglasController::class,'store']);
 });
