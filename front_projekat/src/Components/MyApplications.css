@@ -1,0 +1,58 @@
+.my-applications-container {
+    padding: 20px;
+    background-color: #f4f4f9;
+  }
+  
+  .page-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .no-applications {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+  }
+  
+  .applications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .application-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .application-card.rejected {
+    background-color: #f5606c;
+    border-color: #f5606c;
+  }
+  
+  .application-card.pending {
+    background-color: #eecd5d;
+    border-color: #eecd5d;
+  }
+  
+  .application-card.accepted {
+    background-color: #69c77f;
+    color:black;
+    border-color: #69c77f;
+  }
+  
+  
+  .application-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .application-company,
+  .application-status {
+    font-size: 1em;
+    margin: 5px 0;
+  }
+  
