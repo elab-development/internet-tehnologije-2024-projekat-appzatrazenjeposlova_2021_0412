@@ -9,6 +9,7 @@ use App\Http\Controllers\KategorijaKompanijeController;
 use App\Http\Controllers\OglasController;
 use App\Http\Controllers\PrijavaController;
 use App\Http\Controllers\KategorijaOglasaController;
+use App\Http\Controllers\PostController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -39,7 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
        Route::delete('users/{id}',[UserController::class,'destroy']);
 
     Route::get('users/moje-prijave',[UserController::class,'prijave']);
-
+      Route::apiResource('postovi', PostController::class);
 
     Route::get('kategorije',[KategorijaOglasaController::class,'index']);
     Route::post('kategorije',[KategorijaOglasaController::class,'store']);
