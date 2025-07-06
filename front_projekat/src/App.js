@@ -36,6 +36,7 @@ function App() {
              <Route path="/svi-postovi" element={<AllPosts />} />
             <Route path="/svi-postovi/:id" element={<SinglePost />} />
             <Route path="/napisi-post" element={<CreatePost />} />
+            <Route path="/public-api" element={<JobSearchPage />} />
          </Routes>
       </div>
     </Router>
