@@ -18,4 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('kompanije/{id}',[KompanijaController::class,'show']);   
     Route::get('kompanije/',[KompanijaController::class,'index']);
+
+    Route::put('kompanije/{id}',[KompanijaController::class,'update']);
 });
