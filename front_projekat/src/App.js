@@ -6,6 +6,8 @@ import Register from './Components/Register';
 import AllAds from './Components/AllAds';
 import CompaniesPage from './Components/CompaniesPage';
 import CompanyDetail from './Components/CompanyDetail';
+import JobAdPage from './Components/JobAdPage';
+import JobCategories from './Components/JobCategories';
 
 function App() {
   return (
@@ -17,7 +19,8 @@ function App() {
              <Route path="/all-ads" element={<AllAds/>}/>
             <Route path="/kompanije" element={<CompaniesPage/>}/>
             <Route path="/kompanije/:id" element={<CompanyDetail />} />
-
+            <Route path="/all-ads/:id" element={<JobAdPage />} />
+            <Route path="/categories" element={<JobCategories />} />
 
          </Routes>
       </div>
