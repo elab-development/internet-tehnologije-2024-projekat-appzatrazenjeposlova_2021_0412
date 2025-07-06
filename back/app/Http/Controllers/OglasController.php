@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Oglas;
 use App\Http\Resources\OglasResource;
+use App\Models\Kompanija;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

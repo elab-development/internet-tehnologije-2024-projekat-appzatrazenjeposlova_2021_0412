@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KompanijaController;
 use App\Http\Controllers\KategorijaKompanijeController;
 use App\Http\Controllers\OglasController;
-
+use App\Http\Controllers\PrijavaController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -27,4 +27,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
       Route::post('oglasi',[OglasController::class,'store']);
          Route::delete('oglasi/{id}',[OglasController::class,'destroy']);
+
+
+
+          Route::post('prijave/',[PrijavaController::class,'store']);
 });
