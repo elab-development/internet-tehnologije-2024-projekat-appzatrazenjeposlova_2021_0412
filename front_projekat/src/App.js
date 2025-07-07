@@ -16,6 +16,7 @@ import MyApplications from './Components/MyApplications';
 import AllPosts from './Components/AllPosts';
 import SinglePost from './Components/SinglePost';
 import CreatePost from './Components/CreatePost';
+import JobSearchPage from './Components/JobSearchPage';
 function App() {
   return (
     <Router>
